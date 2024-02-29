@@ -1,7 +1,5 @@
-import logo from './logo.svg';
-import './App.css';
-import GroceryList from './GroceryList'
-import React from 'react'
+import React from 'react';
+import GroceryList from './GroceryList'; // Make sure the path matches where your GroceryList component is saved
 
 function App() {
   return (
