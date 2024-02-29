@@ -1,51 +1,66 @@
 import React, { useState } from 'react';
+import './GroceryList.css'
 
 function GroceryList() {
-  const [items, setItems] = useState([]); // Store the list of items as an array
-  const [currentItem, setCurrentItem] = useState(''); // The current item being input
+  const [items, setItems] = useState([]);
+  const [currentItem, setCurrentItem] = useState('');
 
   const handleChange = (event) => {
-    setCurrentItem(event.target.value); // Update the current input item
+    setCurrentItem(event.target.value);
   };
 
   const handleAddItem = () => {
-    if (!currentItem.trim() || items.length >= 35) return; // Don't add if input is empty or list is full
-    setItems([...items, currentItem.trim()]); // Add the current item to the list
-    setCurrentItem(''); // Clear the current item input for the next entry
+    if (!currentItem.trim() || items.length >= 35) {
+      return;
+    }
+    setItems([...items, currentItem.trim()]);
+    setCurrentItem('');
   };
 
   const handleDeleteItem = (index) => {
-    setItems(items.filter((item,i) => i !== index))
-  }
+    setItems(items.filter((_, i) => i !== index));
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert('Submitted List: ' + items.join(', ')); // Join the array items into a string
-    // Here you would handle the submission, e.g., sending it to the backend
+    alert('Submitted List: ' + items.join(', '));
   };
 
   return (
-    <div>
+    <div className="grocery-list">
       <h2>My Grocery List</h2>
       <form onSubmit={handleSubmit}>
         <input
+          type="text"
           value={currentItem}
           onChange={handleChange}
           placeholder="Enter a grocery item"
         />
-        <button type="button" onClick={handleAddItem} disabled={items.length >= 35}>
+        <button 
+          type="button" 
+          onClick={handleAddItem} 
+          disabled={items.length >= 35}
+          className="add-item-button" 
+        >
           Add New Item
         </button>
-        <button type="submit">Submit List</button>
-
-        <ul>
-          {items.map((item, index) => (
-            <li key={index}>{item}</li> // Display each item in the list
-          ))}
-        </ul>
+        <button type="submit" className="submit-list-button">Submit List</button> 
       </form>
+      <ul>
+        {items.map((item, index) => (
+          <li key={index} className="grocery-item">
+            {item}
+            <button 
+              type="button" 
+              onClick={() => handleDeleteItem(index)} 
+              className="delete-button"
+            >
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
-  );
-}
+  );}
 
-export default GroceryList;
+  export default GroceryList

@@ -1,0 +1,21 @@
+
+.grocery-list {
+    margin: 80px;
+  }
+  
+  .grocery-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .delete-button {
+    margin-left: 10px;
+    background-color: #f44336; /* Red */
+    color: rgb(23, 32, 196);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
